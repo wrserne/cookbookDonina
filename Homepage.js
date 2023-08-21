@@ -4,7 +4,9 @@ const path = require('path');
 const multer = require('multer');
 const app = express();
 const session = require('express-session');
+const dotenv = require('dotenv'); // Add this line
 
+dotenv.config(); // Load environment variables from .env file
 app.use(session({
     secret: 'secret',
     resave: false,
@@ -23,11 +25,11 @@ const upload = multer({ storage: storage });
 
 // Create a single connection object for MySQL
 const connection = mysql.createConnection({
-    user: 'root',
-    password: 'password',
-    socketPath: '/tmp/mysql.sock', // Replace with your MySQL host
-    database: 'cookbook',  // Replace with your MySQL database name
-  
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
 });
 
 // Connect to MySQL
