@@ -53,6 +53,34 @@ function requireAuth(req, res, next) {
         res.redirect('/login');
     }
 }
+connection.query('SELECT 1', (err, results) => {
+    if (err) {
+        console.error('Database connection error: ' + err.stack);
+    } else {
+        console.log('Database is connected.');
+    }
+});
+
+app.get('/', (req, res) => {
+    const sql = 'SELECT * FROM recipes';
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error retrieving recipes: ' + err.stack);
+            return res.status(500).send('Error retrieving recipes: ' + err.message); // Send the error message to the client
+        }
+
+        // Rest of your code...
+    });
+});
+Logs: Check your Heroku logs (heroku logs --tail) for more detailed error messages. The logs often provide insights into what went wrong.
+
+By following these steps, you should be able to identify and resolve the issue causing the "error retrieving recipes" message in your Heroku-deployed application.
+
+
+
+
+
+
 
 app.get('/editRecipe/:id', requireAuth, (req, res) => {
     const recipeId = req.params.id;
