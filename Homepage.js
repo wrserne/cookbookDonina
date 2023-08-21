@@ -72,13 +72,6 @@ app.get('/', (req, res) => {
         // Rest of your code...
     });
 });
-Logs: Check your Heroku logs (heroku logs --tail) for more detailed error messages. The logs often provide insights into what went wrong.
-
-By following these steps, you should be able to identify and resolve the issue causing the "error retrieving recipes" message in your Heroku-deployed application.
-
-
-
-
 
 
 
