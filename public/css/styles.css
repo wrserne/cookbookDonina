@@ -1,0 +1,197 @@
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    /* Center all text in the body */
+    color: #fff; /* Set default text color to white */
+    background-color: #f5f5f5; /* Set a background color for the body */
+}
+
+/* Heading styles */
+h1, h2 {
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Add the carousel styles here */
+.carousel-container {
+    max-width: 900px; /* Adjust the maximum width to fit the carousel on the page */
+    margin: 20px auto; /* Adjust margin to center the carousel */
+    overflow: hidden; /* Hide the scroll bar */
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s;
+    gap: 20px; /* Add a gap between carousel items for better spacing */
+    justify-content: center; /* Center the carousel items horizontally */
+    position: relative; /* Set the parent container to relative positioning */
+}
+
+.carousel-item {
+    flex: 0 0 250px; /* Set a fixed width for each carousel item */
+    height: 350px; /* Set a fixed height for each carousel item */
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative; /* Set the carousel items to relative positioning */
+}
+
+.carousel-item img {
+    /* Set the image size to cover the entire carousel item */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.recipe-title {
+    position: absolute;
+    top: 50%; /* Center the recipe titles vertically */
+    left: 50%; /* Center the recipe titles horizontally */
+    transform: translate(-50%, -50%);
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #fff;
+    width: 100%; /* Set the title width to cover the entire carousel item */
+    pointer-events: none; /* Prevent the titles from blocking clicks */
+}
+
+/* Set the video background to cover the entire viewport */
+#video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+/* Add the button styles */
+.carousel-button {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Category heading styles */
+.category-heading {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    width: fit-content; /* Set the width to fit the content */
+    text-align: center; /* Center the heading */
+    background-color: steelblue; /* Add a background color to the heading */
+    color: #007bff; /* Set the text color */
+    padding: 5px 10px; /* Add padding for better spacing */
+    border-radius: 5px;
+    margin: 0 auto; /* Center the heading */
+}
+
+/* Additional styles for the blue bar navigation links */
+.blue-bar {
+    background-color: #007bff;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 74px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+.blue-bar a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .blue-bar {
+        padding: 5px 0; /* Decrease the top/bottom padding */
+    }
+
+    .blue-bar a {
+        margin: 0 5px; /* Decrease the horizontal margin */
+        font-size: 14px; /* Reduce the font size for smaller screens */
+    }
+}
+
+/* Existing styles */
+
+/* Additional styles for the category buttons */
+.category-button {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 5px;
+    text-decoration: none;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    /* Existing media query styles */
+
+    .category-button {
+        padding: 6px 15px; /* Adjust padding for smaller screens */
+        font-size: 14px; /* Reduce font size for smaller screens */
+    }
+}
+
+/* Add a background to the login message */
+.login-message {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.search-box {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.title {
+    font-family: 'Pacifico', cursive; /* Add the font family property here */
+    font-size: 36px;
+    color: #e17055;
+    margin: 0;
+    background-color: white;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    cursor: pointer;
+}

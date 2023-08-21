@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Cookbook - Search Results</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Include your existing styles here */
+        /* ... */
+
+        /* Search results container */
+        .search-results-container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Search result item */
+        .search-result {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .search-result img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+
+        .search-result a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* No results message */
+        .no-results {
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: center;
+            color: black;
+        }
+        .category-bar {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: steelblue;
+            color: white;
+            padding: 10px 0;
+        }
+        
+        .category-bar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+        
+        /* Home button styles */
+        .home-button {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <br>
+    <div class="search-box">
+        <form action="/search" method="GET">
+            <input type="text" name="query" placeholder="Search recipes...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <!-- Include your existing header and navigation bar here -->
+    <!-- ... -->
+    
+    <div class="category-bar">
+        <% categories.forEach(function(category) { %>
+            <a href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>"><%= category %></a>
+        <% }); %>
+    </div>
+
+    <div class="search-results-container">
+        <% if (searchResults.length > 0) { %>
+            <% searchResults.forEach(function(recipe) { %>
+                <div class="search-result">
+                    <img src="<%= recipe.image_url || '/images/default-photo.jpg' %>" alt="<%= recipe.title %>">
+                    <div>
+                        <h3><a href="/recipe/<%= recipe.id %>"><%= recipe.title %></a></h3>
+                        <p><%= recipe.description %></p>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="no-results">No results found for your search query.</p>
+        <% } %>
+    </div>
+
+    <!-- Home button -->
+    <div class="home-button">
+        <a href="/">Go back to Home</a>
+    </div>
+
+    <!-- Include your existing footer and script references here -->
+    <!-- ... -->
+</body>
+</html>
