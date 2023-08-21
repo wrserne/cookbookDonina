@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Cookbook</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Your existing styles */
+
+        /* Include the font for the carousel titles */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+        /* Center-align all text */
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Video background */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Page header */
+        h1 {
+            margin-top: 50px;
+            color:steelblue;
+            font-size: 36px;
+        }
+
+        /* Login bar */
+        .login-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: steelblue;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        /* Style adjustments for login bar links */
+        .login-bar a {
+            color: black;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Additional styles for the user box */
+        .user-box {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        /* Add Recipe and My Recipes buttons */
+        .action-button {
+    display: block; /* Change display to block */
+    padding: 10px 20px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 10px;
+    text-decoration: none;
+}
+
+        /* Categories carousel container */
+        .categories-carousel-container {
+            padding: 20px;
+        }
+
+        /* Category title */
+        h2 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #007bff;
+            background-color: none;
+            padding: 10px;
+            border-radius: 5px 5px 0 0;
+        }
+
+        /* Carousel container */
+        .carousel-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        /* Carousel items */
+        .carousel-item {
+            display: none;
+            text-align: center;
+        }
+
+        .carousel-item.active {
+            display: block;
+        }
+
+        /* Recipe title */
+        .recipe-title {
+            margin-top: 10px;
+            font-size: 18px;
+        }
+
+        /* Carousel buttons */
+        .carousel-button {
+            background-color: steelblue;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+
+        /* Fixed title styles */
+        .title {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            color: #e17055;
+            margin: 0;
+            background-color: white;
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .blue-bar {
+            background-color: steelblue;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 74px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .blue-bar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+
+        .category-button {
+            text-decoration: none;
+            color: steelblue;
+        }
+
+        .category-heading {
+            font-size: 18px;
+            margin-bottom: 10px;
+            width: fit-content;
+            text-align: center;
+            background-color: steelblue;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 0 auto;
+            font-family: 'Roboto', sans-serif; /* Change font to Roboto */
+        }
+
+        /* Add the carousel styles here */
+        .carousel-container {
+            max-width: 900px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .carousel {
+            display: flex;
+            transition: transform 0.5s;
+            gap: 20px;
+            justify-content: center;
+            position: relative;
+        }
+
+        .carousel-item {
+            flex: 0 0 250px;
+            height: 350px;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .recipe-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        /* Set the video background to cover the entire viewport */
+        #video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        /* Add the button styles */
+        .carousel-button {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Category heading styles */
+       /* Category heading styles */
+
+        /* Your existing styles */
+
+        /* Additional styles for the search box */
+        .search-box {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .search-box input[type="text"] {
+            border: none;
+            padding: 5px;
+            width: 150px;
+        }
+
+        .search-box button {
+            color: #e17055;
+            background-color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .login-box {
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: space-around; /* Space the items evenly */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.login-form {
+    flex: 2; /* Distribute available space evenly */
+    text-align: center;
+    color: steelblue;
+}
+
+.form-group {
+    margin-bottom: 5px;
+   
+}
+
+.login-button {
+    margin-top: 10px;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.login-button {
+    margin-top: 10px;
+}
+.login-photo {
+    width: 150px; /* Adjust the width to your desired size */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+    margin: 0 10px; /* Add margin to separate the photos */
+}
+.photo-bar {
+    display: flex; /* Use flexbox to align photos horizontally */
+    justify-content: space-between; /* Distribute the space between photos evenly */
+    align-items: center; /* Vertically center the photos */
+}
+.black-text {
+    color: black;
+}
+
+    </style>
+</head>
+<body>
+ 
+    <div class="search-box">
+        <form action="/search" method="GET">
+            <input type="text" name="query" placeholder="Search recipes...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="blue-bar">
+        <% categories.forEach(function(category) { %>
+            <a href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>"><%= category %></a>
+        <% }); %>
+    </div>
+
+    <video id="video-background" autoplay muted loop>
+        <source src="/coverr-chef-preparing-a-dish-at-a-restaurant-6248-1080p.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="title-background">
+        <h1 class="title">The Donina Family Cookbook</h1>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="login-box">
+        <div class="photo-bar">
+            <img src="images/georgemary.jpg" alt="georgemary" class="login-photo">
+            <img src="images/chuckrose.jpg" alt="chuckrose" class="login-photo">
+            <img src="images/leemarge.jpg" alt="leemarge" class="login-photo">
+            <% if (authenticated) { %>
+                <p><span style="color: black;">Welcome, <%= firstName %> <%= lastName %>!</span> <a href="/logout">Logout</a></p>
+
+                <!-- Wrap the "Add Recipe" and "My Recipes" buttons in a div -->
+                
+                </div>
+            <% } else { %>
+                <!-- Wrap the login form in a <form> element -->
+                <form action="/login" method="POST" class="login-form">
+                    <div class="form-group">
+                        <label for="email" style="color: black;">Email:</label>
+                        <input type="text" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" style="color: black;">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="login-button">Login</button>
+                </form>
+                <p><span style="color: black;">Not registered yet?</span> <a href="/register">Register</a></p>
+
+
+            <% } %>
+            <img src="images/william.jpg" alt="william" class="login-photo">
+            <img src="images/lucytony.jpg" alt="lucytony" class="login-photo">
+            <img src="images/joe.jpg" alt="joe" class="login-photo">
+        </div>
+    </div>
+    
+    
+    
+    
+    <% if (authenticated) { %>
+        <div class="action-button">
+            <a href="/addRecipe">Add a New Recipe</a>
+        </div>
+        <% if (showMyRecipesLink) { %>
+            <div class="action-button">
+                <a href="/myRecipes">My Recipes</a>
+            </div>
+        <% } %>
+    <% } %>
+
+    <div class="categories-carousel-container">
+        <% categories.forEach(function(category) { %>
+            <% if (categorizedRecipes[category] && categorizedRecipes[category].length > 0) { %>
+                <div class="carousel-container" id="<%= category.replace(/\s+/g, '-').toLowerCase() %>">
+                    <a class="category-button" href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>">
+                        <h2 class="category-heading"><%= category %></h2>
+                    </a>
+                    <div class="carousel <%= category.replace(/\s+/g, '-').toLowerCase() %>">
+                        <% categorizedRecipes[category].forEach(function(recipe, index) { %>
+                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                                <a href="/recipe/<%= recipe.id %>">
+                                    <img src="<%= recipe.image_url || '/images/default-photo.jpg' %>" alt="<%= recipe.title %>">
+                                    <div class="recipe-title"><%= recipe.title %></div>
+                                </a>
+                            </div>
+                        <% }); %>
+                    </div>
+                    <button class="carousel-button" onclick="scrollCarousel(this, '<%= category.replace(/\s+/g, '-').toLowerCase() %>', -1)">Previous</button>
+                    <button class="carousel-button" onclick="scrollCarousel(this, '<%= category.replace(/\s+/g, '-').toLowerCase() %>', 1)">Next</button>
+                </div>
+                <script>
+                    function autoCycleRecipes(carouselId) {
+                        var carousel = document.querySelector(`#${carouselId} .carousel`);
+                        var items = carousel.querySelectorAll('.carousel-item');
+
+                        function nextSlide() {
+                            var activeIndex = -1;
+
+                            items.forEach((item, index) => {
+                                if (item.classList.contains('active')) {
+                                    activeIndex = index;
+                                    item.classList.remove('active');
+                                }
+                            });
+
+                            var newIndex = activeIndex + 1;
+                            if (newIndex >= items.length) {
+                                newIndex = 0;
+                            }
+                            items[newIndex].classList.add('active');
+                        }
+
+                        setInterval(nextSlide, 5000); // Rotate every 5 seconds
+                    }
+
+                    autoCycleRecipes('<%= category.replace(/\s+/g, '-').toLowerCase() %>');
+                </script>
+            <% } else { %>
+                <a class="category-button" href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>">
+                    <h2 class="category-heading"><%= category %></h2>
+                </a>
+                <p>No recipes available for this category.</p>
+            <% } %>
+        <% }); %>
+    </div>
+    
+    <script>
+        function scrollCarousel(button, carouselId, direction) {
+            var carousel = document.querySelector(`#${carouselId} .carousel`);
+            var items = carousel.querySelectorAll('.carousel-item');
+            var activeIndex = -1;
+
+            items.forEach((item, index) => {
+                if (item.classList.contains('active')) {
+                    activeIndex = index;
+                    item.classList.remove('active');
+                }
+            });
+
+            if (activeIndex !== -1) {
+                var newIndex = activeIndex + direction;
+                if (newIndex < 0) {
+                    newIndex = items.length - 1;
+                } else if (newIndex >= items.length) {
+                    newIndex = 0;
+                }
+                items[newIndex].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

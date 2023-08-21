@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= recipe.title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Center-align all text */
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            background-image: url('<%= recipe.image_url %>');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        }
+
+        /* Box styling */
+        .recipe-box {
+            max-width: 50%;
+            border: 1px solid black;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: #f5f5f5;
+            color: black;
+        }
+
+    
+
+        /* Apply common styling to headings and paragraphs within recipe boxes */
+        .recipe-box h2,
+        .recipe-box h3,
+        .recipe-box p {
+            text-align: center;
+        }
+
+        .recipe-box h3 {
+            margin-top: 20px;
+        }
+
+        /* Add page break after each line in the family secrets text */
+        .recipe-box .family-secrets-text {
+            white-space: pre-line;
+        }
+
+       
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f5f5f5;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    
+    width: 98.5%;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+/* Individual navigation link style */
+.nav-link {
+    color:white;
+    text-decoration: none;
+    border: 1px solid black;
+    padding: 5px 20px;
+    border-radius: 5px;
+    background-color: steelblue;
+}
+
+
+        /* Blue title color */
+        h1.title {
+            color: #e17055; /* Use the same color as the example page */
+        }
+
+        /* Fixed title styles */
+        .title {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            color: #e17055;
+            margin: 0;
+            background-color: white; /* Add a white background color */
+            padding: 10px;
+            position: fixed; /* Set the position to fixed */
+            top: 0; /* Place it at the top */
+            left: 0; /* Place it at the left */
+            width: 100%; /* Make it span the full width */
+            z-index: 1000; /* Ensure it appears above other content */
+        }
+
+        .blue-bar {
+            background-color: steelblue;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 74px; /* Adjust the top value to create space below the title */
+            left: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .blue-bar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Fixed title -->
+    <h1 class="title">The Donina Family Cookbook</h1>
+  
+
+    <!-- Blue bar with links to categories -->
+    <div class="blue-bar">
+        <% categories.forEach(function(category) { %>
+            <a href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>"><%= category %></a>
+        <% }); %>
+    </div>
+
+    <div class="background-image">
+        <div class="nav-links">
+       
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="recipe-box">
+            <h1 class="title"><%= recipe.title %></h1>
+            <p class="added-by">Added by: <%= recipe.added_by %></p> <!-- Display added_by here -->
+            <h3>Makes:</h3>
+            <p class="makes-text"><%= recipe.makes %></p>
+            <h3>Ingredients:</h3>
+            <p class="ingredients-list">
+                <% if (typeof recipe.ingredients === 'string' && recipe.ingredients.length > 0) { %>
+                    <%- recipe.ingredients.replace(/,/g, '<br>&bull; ') %>
+                <% } else { %>
+                    No ingredients available.
+                <% } %>
+            </p>
+        </div>
+        <!-- ... (remaining HTML code) -->
+        <div class="recipe-box">
+            <h3>Instructions:</h3>
+            <p class="instructions-text">
+                <% recipe.instructions.forEach(instruction => { %>
+                    <%= instruction %><br>
+                <% }); %>
+            </p>
+        </div>
+        <% if (recipe.family_secrets && recipe.family_secrets.trim() !== "") { %>
+            <div class="recipe-box">
+                <h3>Family Secrets:</h3>
+                <p class="family-secrets-text"><%= recipe.family_secrets %></p>
+            </div>
+        <% } %>
+   
+        <div class="nav-links">
+            <a class="nav-link" href="/">Back to Home</a>
+            <a class="nav-link" href="/myRecipes">My Recipes</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+</body>
+</html>

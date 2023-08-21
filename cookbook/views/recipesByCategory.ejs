@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title><%= category %> Recipes</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+      .category-header {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            color: #e17055;
+            
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            text-align: center; /* Center the category header */
+        }
+        .recipe-box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px; /* Adjust as needed */
+            background-color: rgba(255, 255, 255, 0.9); /* Translucent white background */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+            text-align: center; /* Center the box contents */
+        }
+        .recipe-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .recipe-item {
+            margin: 10px;
+            flex: 0 0 calc(33.33% - 20px); /* Adjust for desired number of columns */
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .recipe-item a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .recipe-image {
+            width: 100%;
+            height: 150px; /* Adjust as needed */
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        .recipe-details {
+            padding: 10px;
+        }
+        .recipe-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .recipe-description {
+            color: #555;
+        }
+
+        /* Additional styles for the category header */
+        .category-header {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            color: #e17055;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+        }
+
+        /* Additional styles for the top bar navigation links */
+        .top-bar {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: steelblue;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+        }
+        .top-bar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+
+   /* Style for navigation buttons container */
+   .nav-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.2);
+    background-color: white;
+    padding: 10px; /* Adjust padding as needed */
+    z-index: 1000;
+}
+
+.nav-button {
+    padding: 10px 20px;
+    background-color: steelblue;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+        /* Additional styles for the search box */
+        .search-box {
+            position: fixed;
+            top: 30px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 5px 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        .search-box button {
+            color: #e17055;
+            background-color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+     <div class="title-background">
+
+         <a href="/"><h1 class="title">The Donina Family Cookbook</h1></a>
+    </div>
+    <br>
+    <br>
+    <div class="search-box">
+        <form action="/search" method="GET">
+            <input type="text" name="query" placeholder="Search recipes...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <!-- Top bar with navigation buttons -->
+    <div class="top-bar">
+        <br>
+        <% categories.forEach(function(category) { %>
+            <a href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>"><%= category %></a>
+        <% }); %>
+    </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+    <!-- Centered recipe box with category header -->
+    <div class="recipe-box">
+        <h1 class="category-header"><%= category.replace(/-/g, ' ') %></h1> <!-- Replace hyphens with spaces -->
+
+        <!-- Display the recipes for the category -->
+        <ul class="recipe-list">
+            <% recipes.forEach(function(recipe) { %>
+                <li class="recipe-item">
+                    <a href="/recipe/<%= recipe.id %>">
+                        <img class="recipe-image" src="<%= recipe.image_url || '/images/default-photo.jpg' %>" alt="<%= recipe.title %>">
+                        <div class="recipe-details">
+                            <h3 class="recipe-title"><%= recipe.title %></h3>
+                            <p class="recipe-description"><%= recipe.description %></p>
+                        </div>
+                    </a>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+
+    <!-- Navigation buttons at the bottom -->
+    <div class="nav-buttons">
+        <a class="nav-button" href="/">Home</a>
+        <a class="nav-button" href="/myRecipes">My Recipes</a>
+    </div>
+    <br>
+    <br>
+
+    <!-- Other content or footer you might want to include -->
+</body>
+</html>

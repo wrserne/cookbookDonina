@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Family Cookbook - Register</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        body {
+            color: black;
+            background-image: url('/images/default-photo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0; /* Remove default margin */
+        }
+        .registration-container {
+            background-color: rgba(255, 255, 255, 1);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-container">
+        <h1>Registration</h1>
+        <% if (errorMessage) { %>
+            <p class="error-message"><%= errorMessage %></p>
+        <% } %>
+        <form action="/register" method="POST" onsubmit="return validateForm()">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <br>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <label for="verifyPassword">Verify Password:</label>
+            <input type="password" id="verifyPassword" name="verifyPassword" required>
+            <br>
+            <div id="password-error" class="error-message"></div>
+            <br>
+            <button type="submit">Register</button>
+        </form>
+        <br>
+        <a href="/">Back to Home</a>
+
+        <script>
+            function validateForm() {
+                var password = document.getElementById('password').value;
+                var verifyPassword = document.getElementById('verifyPassword').value;
+                var passwordError = document.getElementById('password-error');
+
+                if (password.length < 8) {
+                    passwordError.innerText = 'Password must be at least 8 characters long.';
+                    return false;
+                } else if (password !== verifyPassword) {
+                    passwordError.innerText = 'Passwords do not match.';
+                    return false;
+                }
+
+                return true;
+            }
+        </script>
+    </div>
+</body>
+</html>

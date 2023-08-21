@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add New Recipe</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: steelblue;
+            color: white;
+        }
+
+        form {
+            width: 60%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 6px;
+            margin-bottom: 12px;
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            margin-top: 6px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add New Recipe</h1>
+    <form action="/addRecipe" method="post" enctype="multipart/form-data">
+        <label for="title">Recipe Title:</label>
+        <input type="text" id="title" name="title" required>
+        <label for="makes"> How many servings does the recipe make?:</label>
+<input type="text" id="makes" name="makes" required>
+
+        <label for="ingredients">Ingredients (separated by commas):</label>
+        <input type="text" id="ingredients" name="ingredients" required>
+
+        <label for="instructions">Instructions:</label>
+        <textarea id="instructions" name="instructions" rows="4" required></textarea>
+
+        <label for="photo">Add Recipe Photo (optional):</label>
+        <input type="file" id="photo" name="photo">
+
+        <label for="familySecrets"><br><br>Family Secrets (optional):</label>
+        <textarea id="familySecrets" name="familySecrets" rows="4"></textarea>
+
+        <label for="type">Recipe Type:</label>
+        <select id="type" name="type">
+            <option value="Appetizers">Appetizers</option>
+            <option value="Breads">Breads</option>
+            <option value="Soups">Soups</option>
+            <option value="Pasta & Sauces">Pasta & Sauces</option>
+            <option value="Entrées">Entrées</option>
+            <option value="Veggies">Veggies</option>
+            <option value="Cakes">Cakes</option>
+            <option value="Pies">Pies</option>
+            <option value="Cookies">Cookies</option>
+        </select>
+
+        <input type="submit" value="Add Recipe">
+    </form>
+
+    <script>
+        // Check if the user selected a photo
+        document.querySelector('form').addEventListener('submit', function() {
+            const photoInput = document.querySelector('#photo');
+            if (!photoInput.files || photoInput.files.length === 0) {
+                // Use default image URL if no photo selected
+                photoInput.value = '/images/default-photo.jpg';
+
+            }
+        });
+    </script>
+</body>
+</html>
