@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const path = require('path');
 const multer = require('multer');
 const app = express();
@@ -23,24 +23,25 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Create a single connection object for MySQL
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-});
-
+    port: process.env.DB_PORT || 3306, // Use 3306 as the default MySQL port
+  });
+  
 // Connect to MySQL
 connection.connect((err) => {
     if (err) {
-        console.error('Error connecting to the database: ' + err.stack);
-        return;
+      console.error('Error connecting to the database: ' + err.stack);
+      return;
     }
     console.log('Connected to the database!');
-});
-
+  });
+  
+  module.exports = connection;
+  
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
