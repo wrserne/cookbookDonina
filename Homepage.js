@@ -10,9 +10,6 @@ const jawsDBUrl = 'mysql://imy4l8lvoatg1p1u:n9nglukxz6j96ypr@jtb9ia3h1pgevwb1.cb
 
 const parsedUrl = url.parse(jawsDBUrl);
 
-
-
-
 dotenv.config(); // Load environment variables from .env file
 app.use(session({
     secret: 'secret',
