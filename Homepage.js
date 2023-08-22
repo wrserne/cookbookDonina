@@ -6,8 +6,10 @@ const app = express();
 const session = require('express-session');
 const dotenv = require('dotenv');
 const url = require('url');
-const jawsDBUrl = 'mysql://imy4l8lvoatg1p1u:n9nglukxz6j96ypr@jtb9ia3h1';
+const jawsDBUrl = 'mysql://imy4l8lvoatg1p1u:n9nglukxz6j96ypr@jtb9ia3h1pgevwb1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nf9fk46l4rajefsl';
+
 const parsedUrl = url.parse(jawsDBUrl);
+
 
 
 
