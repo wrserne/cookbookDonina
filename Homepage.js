@@ -4,7 +4,12 @@ const path = require('path');
 const multer = require('multer');
 const app = express();
 const session = require('express-session');
-const dotenv = require('dotenv'); // Add this line
+const dotenv = require('dotenv');
+const url = require('url');
+const jawsDBUrl = 'mysql://imy4l8lvoatg1p1u:n9nglukxz6j96ypr@jtb9ia3h1';
+const parsedUrl = url.parse(jawsDBUrl);
+
+
 
 dotenv.config(); // Load environment variables from .env file
 app.use(session({
@@ -23,25 +28,32 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+const dbUser = parsedUrl.auth.split(':')[0];
+const dbPassword = parsedUrl.auth.split(':')[1];
+const dbHost = parsedUrl.host;
+const dbName = parsedUrl.pathname.split('/')[1];
+const dbPort = parsedUrl.port;
+
+// Now, you can use these extracted details in your MySQL connection configuration
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT || 3306, // Use 3306 as the default MySQL port
-  });
-  
+    host: dbHost,
+    user: dbUser,
+    password: dbPassword,
+    database: dbName,
+    port: dbPort || 3306, // Use 3306 as the default MySQL port
+});
+
 // Connect to MySQL
 connection.connect((err) => {
     if (err) {
-      console.error('Error connecting to the database: ' + err.stack);
-      return;
+        console.error('Error connecting to the database: ' + err.stack);
+        return;
     }
     console.log('Connected to the database!');
-  });
-  
-  module.exports = connection;
-  
+});
+
+module.exports = connection;
+
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -54,6 +66,7 @@ function requireAuth(req, res, next) {
         res.redirect('/login');
     }
 }
+
 connection.query('SELECT 1', (err, results) => {
     if (err) {
         console.error('Database connection error: ' + err.stack);
@@ -73,8 +86,6 @@ app.get('/', (req, res) => {
         // Rest of your code...
     });
 });
-
-
 
 app.get('/editRecipe/:id', requireAuth, (req, res) => {
     const recipeId = req.params.id;
