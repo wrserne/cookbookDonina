@@ -5,9 +5,8 @@ const multer = require('multer');
 const app = express();
 const session = require('express-session');
 const dotenv = require('dotenv');
-const url = require('url');
-
 dotenv.config(); // Load environment variables from .env file
+
 app.use(session({
     secret: 'secret',
     resave: false,
@@ -24,16 +23,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-const jawsDBUrl = 'mysql://imy4l8lvoatg1p1u:n9nglukxz6j96ypr@jtb9ia3h1pgevwb1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nf9fk46l4rajefsl';
-
-const parsedUrl = url.parse(jawsDBUrl);
-
-// Extract database connection details from the JawsDB URL
-const dbUser = parsedUrl.auth.split(':')[0];
-const dbPassword = parsedUrl.auth.split(':')[1];
-const dbHost = parsedUrl.host;
-const dbName = parsedUrl.pathname.split('/')[1];
-const dbPort = parsedUrl.port;
+// Directly use environment variables
+const dbHost = process.env.DB_HOST;
+const dbPort = process.env.DB_PORT || 3306; // Use 3306 as the default MySQL port
+const dbUser = process.env.DB_USER;
+const dbPassword = process.env.DB_PASS;
+const dbName = process.env.DB_NAME;
 
 // Configure MySQL Database
 const connection = mysql.createConnection({
@@ -41,7 +36,7 @@ const connection = mysql.createConnection({
     user: dbUser,
     password: dbPassword,
     database: dbName,
-    port: dbPort || 3306 // Use 3306 as the default MySQL port
+    port: dbPort
 });
 
 // Connect to MySQL
