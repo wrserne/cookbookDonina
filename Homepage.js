@@ -30,8 +30,8 @@ const dbUser = process.env.DB_USER;
 const dbPassword = process.env.DB_PASS;
 const dbName = process.env.DB_NAME;
 
-// Configure MySQL Database
-const connection = mysql.createConnection({
+// Configure MySQL Database Pool
+const connection = mysql.createPool({
     host: dbHost,
     user: dbUser,
     password: dbPassword,
@@ -40,12 +40,13 @@ const connection = mysql.createConnection({
 });
 
 // Connect to MySQL
-connection.connect((err) => {
+connection.getConnection((err, conn) => {
     if (err) {
         console.error('Error connecting to the database: ' + err.stack);
         return;
     }
     console.log('Connected to the database!');
+    conn.release(); // Release the connection
 });
 
 module.exports = connection;
