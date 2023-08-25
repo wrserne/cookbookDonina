@@ -72,17 +72,8 @@ connection.query('SELECT 1', (err, results) => {
     }
 });
 
-app.get('/', (req, res) => {
-    const sql = 'SELECT * FROM recipes';
-    connection.query(sql, (err, results) => {
-        if (err) {
-            console.error('Error retrieving recipes: ' + err.stack);
-            return res.status(500).send('Error retrieving recipes: ' + err.message); // Send the error message to the client
-        }
 
 
-    });
-});
 app.get('/editRecipe/:id', requireAuth, (req, res) => {
     const recipeId = req.params.id;
 
