@@ -242,7 +242,7 @@ app.get('/register', (req, res) => {
 
 app.post('/register', (req, res) => {
     const { email, password, firstName, lastName } = req.body;
-    const emailCheckSql = 'SELECT * FROM cookbook.users WHERE email = ?';
+    const emailCheckSql = 'SELECT * FROM nf9fk46l4rajefsl.users WHERE email = ?';
     connection.query(emailCheckSql, [email], (emailErr, emailResults) => {
         if (emailErr) {
             console.error('Error checking email: ' + emailErr.stack);
@@ -283,7 +283,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
-    const sql = 'SELECT * FROM cookbook.users WHERE email = ? AND password = ?';
+    const sql = 'SELECT * FROM nf9fk46l4rajefsl.users WHERE email = ? AND password = ?';
     connection.query(sql, [email, password], (err, results) => {
         if (err) {
             console.error('Error logging in: ' + err.stack);
@@ -301,6 +301,7 @@ app.post('/login', (req, res) => {
             req.session.errorMessage = 'Invalid email or password';
             res.redirect('/');
         }
+        console.log(`Email: ${email}, Password: ${password}`);
     });
 });
 
@@ -352,7 +353,7 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
 app.get('/myRecipes', requireAuth, (req, res) => {
     // Fetch the user's recipes from the database...
     const userId = req.session.userId;
-    const sql = 'SELECT * FROM recipes WHERE userId = ?';
+    const sql = 'SELECT * FROM nf9fk46l4rajefsl.users WHERE id = ?';
     connection.query(sql, [userId], (err, results) => {
         if (err) {
             console.error('Error retrieving recipes: ' + err.stack);
