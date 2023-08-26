@@ -167,7 +167,7 @@
     <!-- Centered recipe box with category header -->
     <div class="recipe-box">
         <h1 class="category-header"><%= category.replace(/-/g, ' ') %></h1> <!-- Replace hyphens with spaces -->
-
+    
         <!-- Display the recipes for the category -->
         <ul class="recipe-list">
             <% recipes.forEach(function(recipe) { %>
@@ -176,7 +176,7 @@
                         <img class="recipe-image" src="<%= recipe.image_url || '/images/default-photo.jpg' %>" alt="<%= recipe.title %>">
                         <div class="recipe-details">
                             <h3 class="recipe-title"><%= recipe.title %></h3>
-                            <p class="recipe-description"><%= recipe.description %></p>
+                            <!-- Add other properties here as needed -->
                         </div>
                     </a>
                 </li>
