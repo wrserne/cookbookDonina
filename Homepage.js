@@ -127,13 +127,15 @@ app.get('/search', async (req, res) => {
                 return;
             }
 
-            res.render('searchResults', { searchResults: results });
+            // Pass the 'categories' variable to the template
+            res.render('searchResults', { searchResults: results, categories: categories });
         });
     } catch (error) {
         console.error(error);
         res.status(500).send('An error occurred while processing your search query.');
     }
 });
+
 
 app.get('/', (req, res) => {
     const sql = 'SELECT * FROM recipes';
