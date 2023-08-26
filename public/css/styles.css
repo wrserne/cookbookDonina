@@ -127,13 +127,43 @@ p {
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
+    /* Decrease top/bottom padding for blue bar */
     .blue-bar {
-        padding: 5px 0; /* Decrease the top/bottom padding */
+        padding: 5px 0;
     }
 
+    /* Reduce font size for navigation links */
     .blue-bar a {
-        margin: 0 5px; /* Decrease the horizontal margin */
-        font-size: 14px; /* Reduce the font size for smaller screens */
+        margin: 0 5px;
+        font-size: 14px;
+    }
+
+    /* Adjust padding and font size for category buttons */
+    .category-button {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    /* Adjust font size for title and reduce padding */
+    .title {
+        font-size: 24px;
+        padding: 5px;
+    }
+    
+    /* Make the carousel items responsive for smaller screens */
+    .carousel-item {
+        flex: 0 0 calc(33.33% - 10px);
+        height: 250px;
+    }
+
+    /* Maintain aspect ratio for carousel item images */
+    .carousel-item img {
+        height: 100%;
+    }
+
+    /* Reduce font size for recipe titles */
+    .recipe-title {
+        font-size: 14px;
     }
 }
 
