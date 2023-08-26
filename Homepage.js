@@ -128,7 +128,7 @@ app.get('/search', async (req, res) => {
             }
 
             // Pass the 'categories' variable to the template
-            res.render('searchResults', { searchResults: results, categories: categories });
+            res.render('searchResults', { searchResults: results });
         });
     } catch (error) {
         console.error(error);
