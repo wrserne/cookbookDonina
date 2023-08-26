@@ -256,7 +256,7 @@ app.post('/register', (req, res) => {
             return;
         }
 
-        const insertSql = 'INSERT INTO cookbook.users (email, password, first_name, last_name) VALUES (?, ?, ?, ?)';
+        const insertSql = 'INSERT INTO nf9fk46l4rajefsl.users (email, password, first_name, last_name) VALUES (?, ?, ?, ?)';
         connection.query(insertSql, [email, password, firstName, lastName], (insertErr, result) => {
             if (insertErr) {
                 console.error('Error registering user: ' + insertErr.stack);
@@ -327,7 +327,7 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
     const sql = 'INSERT INTO recipes (title, ingredients, instructions, family_secrets, type, image_url, userId, makes, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     // Fetch the user's first and last name based on the userId
-    const userSql = 'SELECT first_name, last_name FROM cookbook.users WHERE id = ?';
+    const userSql = 'SELECT first_name, last_name FROM nf9fk46l4rajefsl.users WHERE id = ?';
     connection.query(userSql, [userId], (err, userResults) => {
         if (err) {
             console.error('Error fetching user info: ' + err.stack);
