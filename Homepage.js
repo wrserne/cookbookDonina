@@ -212,9 +212,8 @@ app.get('/recipe/:id', (req, res) => {
         res.render('recipe-details', { recipe, categories }); // Pass the categories array
     });
 });
-
 app.get('/category/:category', (req, res) => {
-    const category = req.params.category;
+    const category = req.params.category.replace(/-/g, ' '); // Replace hyphens with spaces
     const sql = 'SELECT * FROM recipes WHERE type = ?';
     connection.query(sql, [category], (err, results) => {
         if (err) {
