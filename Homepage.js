@@ -373,16 +373,27 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
     const { title, ingredients, instructions, familySecrets, type, makes } = req.body;
     const userId = req.session.userId;
 
+    // Initialize AWS SDK and S3 object
+    const AWS = require('aws-sdk');
+    const s3 = new AWS.S3({
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: process.env.AWS_REGION,
+    });
+
     // Check if a file was uploaded
     if (!req.file) {
         // No photo uploaded, use a default image URL
         const image_url = '/images/default-photo.jpg';
         const sql = 'INSERT INTO recipes (title, ingredients, instructions, family_secrets, type, image_url, userId, makes, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-        // ... (Fetch user's first and last name here if needed)
+        // Fetch user's first and last name here if needed
+        const firstName = ''; // Replace with your logic to fetch the first name
+        const lastName = '';  // Replace with your logic to fetch the last name
 
         const params = [title, ingredients, instructions, familySecrets, type, image_url, userId, makes, `${firstName} ${lastName}`];
 
+        // Insert the recipe into the database
         connection.query(sql, params, (err, result) => {
             if (err) {
                 console.error('Error adding recipe: ' + err.stack);
@@ -417,11 +428,14 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
             const image_url = data.Location; // Use the S3 URL
 
             const sql = 'INSERT INTO recipes (title, ingredients, instructions, family_secrets, type, image_url, userId, makes, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-            
-            // ... (Fetch user's first and last name here if needed)
+
+            // Fetch user's first and last name here if needed
+            const firstName = ''; // Replace with your logic to fetch the first name
+            const lastName = '';  // Replace with your logic to fetch the last name
 
             const params = [title, ingredients, instructions, familySecrets, type, image_url, userId, makes, `${firstName} ${lastName}`];
 
+            // Insert the recipe into the database
             connection.query(sql, params, (err, result) => {
                 if (err) {
                     console.error('Error adding recipe: ' + err.stack);
