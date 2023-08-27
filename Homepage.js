@@ -137,7 +137,7 @@ app.post('/updateRecipe/:id', requireAuth, upload.single('newPhoto'), (req, res)
             Bucket: process.env.BUCKETEER_BUCKET_NAME, // Use the Bucketeer bucket name
             Key: fileName, // File name in S3
             Body: fileBuffer, // File content
-            ACL: 'public-read', // Make the file publicly accessible
+           
         };
 
         // Upload the file to S3
@@ -415,7 +415,7 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
             Bucket: process.env.BUCKETEER_BUCKET_NAME, // Use the Bucketeer bucket name
             Key: fileName, // File name in S3
             Body: fileBuffer, // File content
-            ACL: 'public-read', // Make the file publicly accessible
+            
         };
 
         // Upload the file to S3
