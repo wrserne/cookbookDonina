@@ -10,8 +10,8 @@ dotenv.config(); // Load environment variables from .env file
 
 // Configure AWS SDK with your Bucketeer credentials
 AWS.config.update({
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+    accessKeyId: process.env.BUCKETEER_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.BUCKETEER_AWS_SECRET_ACCESS_KEY,
 });
 
 app.use(session({
@@ -375,11 +375,11 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
 
     // Initialize AWS SDK and S3 object
     const AWS = require('aws-sdk');
-    const s3 = new AWS.S3({
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-        region: process.env.AWS_REGION,
+    AWS.config.update({
+        accessKeyId: process.env.BUCKETEER_AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.BUCKETEER_AWS_SECRET_ACCESS_KEY,
     });
+    const s3 = new AWS.S3();
 
     // Check if a file was uploaded
     if (!req.file) {
