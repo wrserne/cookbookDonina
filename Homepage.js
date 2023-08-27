@@ -12,6 +12,7 @@ dotenv.config(); // Load environment variables from .env file
 AWS.config.update({
     accessKeyId: process.env.BUCKETEER_AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.BUCKETEER_AWS_SECRET_ACCESS_KEY,
+    region: process.env.BUCKETEER_AWS_REGION,
 });
 
 app.use(session({
@@ -378,6 +379,7 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
     AWS.config.update({
         accessKeyId: process.env.BUCKETEER_AWS_ACCESS_KEY_ID,
         secretAccessKey: process.env.BUCKETEER_AWS_SECRET_ACCESS_KEY,
+        region: process.env.BUCKETEER_AWS_REGION,
     });
     const s3 = new AWS.S3();
 
