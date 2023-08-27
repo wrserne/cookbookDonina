@@ -5,13 +5,23 @@ const multer = require('multer');
 const app = express();
 const session = require('express-session');
 const dotenv = require('dotenv');
+const AWS = require('aws-sdk');
 dotenv.config(); // Load environment variables from .env file
+
+// Configure AWS SDK with your Bucketeer credentials
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
 
 app.use(session({
     secret: 'secret',
     resave: false,
     saveUninitialized: true
 }));
+const upload = multer({
+    storage: multer.memoryStorage(),
+});
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -21,7 +31,7 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
-const upload = multer({ storage: storage });
+
 
 // Directly use environment variables
 const dbHost = process.env.DB_HOST;
@@ -99,22 +109,62 @@ app.get('/editRecipe/:id', requireAuth, (req, res) => {
 app.post('/updateRecipe/:id', requireAuth, upload.single('newPhoto'), (req, res) => {
     const recipeId = req.params.id;
     const { title, ingredients, instructions, familySecrets, type, makes } = req.body;
-    const newImageUrl = req.file ? '/images/' + req.file.filename : '/images/default-photo.jpg';
     const userId = req.session.userId; // Extract user ID from the session
 
-    // Update the recipe in the database, including the new photo URL if provided
-    const sql = 'UPDATE recipes SET title=?, ingredients=?, instructions=?, family_secrets=?, type=?, image_url=?, userId=?, makes=? WHERE id=?';
-    const params = [title, ingredients, instructions, familySecrets, type, newImageUrl, userId, makes, recipeId]; // Added recipeId at the end
-    connection.query(sql, params, (err, result) => {
-        if (err) {
-            console.error('Error updating recipe: ' + err.stack);
-            res.status(500).send('Error updating recipe.');
-            return;
-        }
-        console.log('Recipe updated successfully!');
-        res.redirect('/myRecipes');
-    });
+    // Check if a file was uploaded
+    if (!req.file) {
+        // No new photo uploaded, continue with existing image URL
+        const sql = 'UPDATE recipes SET title=?, ingredients=?, instructions=?, family_secrets=?, type=?, userId=?, makes=? WHERE id=?';
+        const params = [title, ingredients, instructions, familySecrets, type, userId, makes, recipeId];
+
+        connection.query(sql, params, (err, result) => {
+            if (err) {
+                console.error('Error updating recipe: ' + err.stack);
+                res.status(500).send('Error updating recipe.');
+                return;
+            }
+            console.log('Recipe updated successfully!');
+            res.redirect('/myRecipes');
+        });
+    } else {
+        // New photo uploaded, save it to S3
+        const fileBuffer = req.file.buffer;
+        const fileName = Date.now() + '-' + req.file.originalname;
+
+        // Define S3 upload parameters
+        const params = {
+            Bucket: process.env.BUCKETEER_BUCKET_NAME, // Use the Bucketeer bucket name
+            Key: fileName, // File name in S3
+            Body: fileBuffer, // File content
+            ACL: 'public-read', // Make the file publicly accessible
+        };
+
+        // Upload the file to S3
+        s3.upload(params, (err, data) => {
+            if (err) {
+                console.error('Error uploading photo to S3: ' + err);
+                res.status(500).send('Error updating recipe.');
+                return;
+            }
+
+            // Update the recipe in the database with the S3 URL
+            const newImageUrl = data.Location;
+            const sql = 'UPDATE recipes SET title=?, ingredients=?, instructions=?, family_secrets=?, type=?, image_url=?, userId=?, makes=? WHERE id=?';
+            const params = [title, ingredients, instructions, familySecrets, type, newImageUrl, userId, makes, recipeId];
+
+            connection.query(sql, params, (err, result) => {
+                if (err) {
+                    console.error('Error updating recipe: ' + err.stack);
+                    res.status(500).send('Error updating recipe.');
+                    return;
+                }
+                console.log('Recipe updated successfully!');
+                res.redirect('/myRecipes');
+            });
+        });
+    }
 });
+
 
 app.get('/search', async (req, res) => {
     try {
@@ -321,23 +371,19 @@ app.get('/addRecipe', requireAuth, (req, res) => {
 
 app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
     const { title, ingredients, instructions, familySecrets, type, makes } = req.body;
-    const image_url = req.file ? '/images/' + req.file.filename : '/images/default-photo.jpg';
     const userId = req.session.userId;
-    const sql = 'INSERT INTO recipes (title, ingredients, instructions, family_secrets, type, image_url, userId, makes, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-    // Fetch the user's first and last name based on the userId
-    const userSql = 'SELECT first_name, last_name FROM nf9fk46l4rajefsl.users WHERE id = ?';
-    connection.query(userSql, [userId], (err, userResults) => {
-        if (err) {
-            console.error('Error fetching user info: ' + err.stack);
-            res.status(500).send('Error adding recipe.');
-            return;
-        }
+    // Check if a file was uploaded
+    if (!req.file) {
+        // No photo uploaded, use a default image URL
+        const image_url = '/images/default-photo.jpg';
+        const sql = 'INSERT INTO recipes (title, ingredients, instructions, family_secrets, type, image_url, userId, makes, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
-        const firstName = userResults[0].first_name;
-        const lastName = userResults[0].last_name;
+        // ... (Fetch user's first and last name here if needed)
 
-        connection.query(sql, [title, ingredients, instructions, familySecrets, type, image_url, userId, makes, `${firstName} ${lastName}`], (err, result) => {
+        const params = [title, ingredients, instructions, familySecrets, type, image_url, userId, makes, `${firstName} ${lastName}`];
+
+        connection.query(sql, params, (err, result) => {
             if (err) {
                 console.error('Error adding recipe: ' + err.stack);
                 res.status(500).send('Error adding recipe.');
@@ -346,7 +392,47 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
             console.log('Recipe added successfully!');
             res.redirect('/');
         });
-    });
+    } else {
+        // Photo uploaded, save it to S3
+        const fileBuffer = req.file.buffer;
+        const fileName = Date.now() + '-' + req.file.originalname;
+
+        // Define S3 upload parameters
+        const params = {
+            Bucket: process.env.BUCKETEER_BUCKET_NAME, // Use the Bucketeer bucket name
+            Key: fileName, // File name in S3
+            Body: fileBuffer, // File content
+            ACL: 'public-read', // Make the file publicly accessible
+        };
+
+        // Upload the file to S3
+        s3.upload(params, (err, data) => {
+            if (err) {
+                console.error('Error uploading photo to S3: ' + err);
+                res.status(500).send('Error adding recipe.');
+                return;
+            }
+
+            // Update the recipe in the database with the S3 URL
+            const image_url = data.Location; // Use the S3 URL
+
+            const sql = 'INSERT INTO recipes (title, ingredients, instructions, family_secrets, type, image_url, userId, makes, added_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+            
+            // ... (Fetch user's first and last name here if needed)
+
+            const params = [title, ingredients, instructions, familySecrets, type, image_url, userId, makes, `${firstName} ${lastName}`];
+
+            connection.query(sql, params, (err, result) => {
+                if (err) {
+                    console.error('Error adding recipe: ' + err.stack);
+                    res.status(500).send('Error adding recipe.');
+                    return;
+                }
+                console.log('Recipe added successfully!');
+                res.redirect('/');
+            });
+        });
+    }
 });
 
 app.get('/myRecipes', requireAuth, (req, res) => {
