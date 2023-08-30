@@ -415,6 +415,7 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
             Bucket: process.env.BUCKETEER_BUCKET_NAME, // Use the Bucketeer bucket name
             Key: "public/" +fileName, // File name in S3
             Body: fileBuffer, // File content
+            acl: 'public'
             
         };
 
