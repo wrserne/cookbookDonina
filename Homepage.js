@@ -424,8 +424,9 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
                 console.error('Error uploading photo to S3: ' + err);
                 res.status(500).send('Error adding recipe.');
                 return;
-            }
-
+            } 
+            console.log('photo loaded successfully', data);
+            
             // Update the recipe in the database with the S3 URL
             const image_url = data.Location; // Use the S3 URL
 
