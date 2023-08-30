@@ -413,7 +413,7 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
         // Define S3 upload parameters
         const params = {
             Bucket: process.env.BUCKETEER_BUCKET_NAME, // Use the Bucketeer bucket name
-            Key: fileName, // File name in S3
+            Key: "public/" +fileName, // File name in S3
             Body: fileBuffer, // File content
             
         };
@@ -426,7 +426,7 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
                 return;
             } 
             console.log('photo loaded successfully', data);
-            
+
             // Update the recipe in the database with the S3 URL
             const image_url = data.Location; // Use the S3 URL
 
