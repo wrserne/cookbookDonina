@@ -454,9 +454,13 @@ app.post('/addRecipe', requireAuth, upload.single('photo'), (req, res) => {
 });
 
 app.get('/myRecipes', requireAuth, (req, res) => {
-    // Fetch the user's recipes from the database...
     const userId = req.session.userId;
-    const sql = 'SELECT * FROM nf9fk46l4rajefsl.users WHERE id = ?';
+    const sql = `
+        SELECT recipes.*, users.first_name, users.last_name
+        FROM recipes
+        INNER JOIN users ON recipes.userId = users.id
+        WHERE userId = ?
+    `;
     connection.query(sql, [userId], (err, results) => {
         if (err) {
             console.error('Error retrieving recipes: ' + err.stack);

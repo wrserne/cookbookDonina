@@ -1,0 +1,12 @@
+{
+    "Version":"2012-10-17",
+    "Statement":[
+      {
+        "Sid":"AddPerm",
+        "Effect":"Allow",
+        "Principal": "*",
+        "Action":["s3:GetObject"],
+        "Resource":["arn:aws:s3:::bucketeer-57e6d84a-7d11-4066-b84b-4c5a44700458/public/*"]
+        }
+    ]
+  }

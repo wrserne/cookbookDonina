@@ -91,6 +91,7 @@
             <% recipes.forEach(recipe => { %>
                 <li>
                     <a class="recipe-link" href="/recipe/<%= recipe.id %>"><%= recipe.title %></a>
+                    <span>Added by: <%= recipe.first_name %> <%= recipe.last_name %></span>
                     <a class="edit-link" href="/editRecipe/<%= recipe.id %>">Edit</a>
                 </li>
             <% }); %>
