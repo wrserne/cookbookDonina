@@ -127,42 +127,25 @@ p {
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
-    /* Decrease top/bottom padding for blue bar */
-    .blue-bar {
-        padding: 5px 0;
+    /* Existing media query styles */
+    
+    body {
+        font-size: 16px; /* Adjust the default font size */
     }
 
-    /* Reduce font size for navigation links */
+    /* Reduce font size for other elements as needed */
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    @media (max-width: 768px) {
+    /* Reduce font size for navigation links and buttons */
     .blue-bar a {
-        margin: 0 5px;
         font-size: 14px;
     }
 
-    /* Adjust padding and font size for category buttons */
     .category-button {
         padding: 6px 15px;
-        font-size: 14px;
-    }
-
-    /* Adjust font size for title and reduce padding */
-    .title {
-        font-size: 24px;
-        padding: 5px;
-    }
-    
-    /* Make the carousel items responsive for smaller screens */
-    .carousel-item {
-        flex: 0 0 calc(33.33% - 10px);
-        height: 250px;
-    }
-
-    /* Maintain aspect ratio for carousel item images */
-    .carousel-item img {
-        height: 100%;
-    }
-
-    /* Reduce font size for recipe titles */
-    .recipe-title {
         font-size: 14px;
     }
 }
