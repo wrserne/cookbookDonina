@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Family Cookbook</title>
-        <link rel="stylesheet" href="/css/styles.css">
-        <style>
+<head>
+    <title>Family Cookbook</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <style>
         /* Your existing styles */
-
         /* Include the font for the carousel titles */
-      
+
         /* Center-align all text */
         body {
             text-align: center;
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color:steelblue;
+            background-color: steelblue;
         }
 
         /* Video background */
@@ -31,7 +30,7 @@
         /* Page header */
         h1 {
             margin-top: 50px;
-            color:steelblue;
+            color: steelblue;
             font-size: 36px;
         }
 
@@ -67,17 +66,18 @@
 
         /* Add Recipe and My Recipes buttons */
         .action-button {
-    display: block; /* Change display to block */
-    padding: 10px 20px;
-    background-color: steelblue;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    margin: 10px;
-    text-decoration: none;
-}
+            display: block;
+            /* Change display to block */
+            padding: 10px 20px;
+            background-color: steelblue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 10px;
+            text-decoration: none;
+        }
 
         /* Categories carousel container */
         .categories-carousel-container {
@@ -129,7 +129,6 @@
 
         /* Fixed title styles */
         .title {
-            
             font-size: 36px;
             color: #e17055;
             margin: 0;
@@ -191,6 +190,8 @@
             gap: 20px;
             justify-content: center;
             position: relative;
+            overflow-x: auto; /* Make the carousel scrollable */
+            white-space: nowrap; /* Prevent items from wrapping */
         }
 
         .carousel-item {
@@ -202,8 +203,7 @@
             padding: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
-            width:100%;
-
+            width: 100%;
         }
 
         .carousel-item img {
@@ -212,7 +212,6 @@
             object-fit: cover;
             border-radius: 8px;
             flex: 0 0 100%;
-
         }
 
         .recipe-title {
@@ -233,8 +232,7 @@
 
         /* Set the video background to cover the entire viewport */
         #video-background {
-            display:none;
-
+            display: none;
         }
 
         /* Add the button styles */
@@ -244,7 +242,6 @@
         }
 
         /* Category heading styles */
-       /* Category heading styles */
 
         /* Your existing styles */
 
@@ -276,324 +273,332 @@
             cursor: pointer;
             text-decoration: none;
         }
+
         .login-box {
-    display: flex;
-    align-items: center; /* Vertically center the content */
-    justify-content: space-around; /* Space the items evenly */
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-.login-form {
-    flex: 2; /* Distribute available space evenly */
-    text-align: center;
-    color: steelblue;
-}
+            display: flex;
+            align-items: center;
+            /* Vertically center the content */
+            justify-content: space-around;
+            /* Space the items evenly */
+            background-color: rgba(255, 255, 255, 0.8);
+            /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
 
-.form-group {
-    margin-bottom: 5px;
-   
-}
+        .login-form {
+            flex: 2;
+            /* Distribute available space evenly */
+            text-align: center;
+            color: steelblue;
+        }
 
-.login-button {
-    margin-top: 10px;
-}
-.login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+        .form-group {
+            margin-bottom: 5px;
+        }
 
-.form-group {
-    margin-bottom: 10px;
-}
+        .login-button {
+            margin-top: 10px;
+        }
 
-.login-button {
-    margin-top: 10px;
-}
-.login-photo {
-    width: 150px; /* Adjust the width to your desired size */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 8px;
-    margin: 0 10px; /* Add margin to separate the photos */
-}
-.photo-bar {
-    display: flex; /* Use flexbox to align photos horizontally */
-    justify-content: space-between; /* Distribute the space between photos evenly */
-    align-items: center; /* Vertically center the photos */
-}
-.black-text {
-    color: black;
-}
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .login-button {
+            margin-top: 10px;
+        }
+
+        .login-photo {
+            width: 150px;
+            /* Adjust the width to your desired size */
+            height: auto;
+            /* Maintain aspect ratio */
+            border-radius: 8px;
+            margin: 0 10px;
+            /* Add margin to separate the photos */
+        }
+
+        .photo-bar {
+            display: flex;
+            /* Use flexbox to align photos horizontally */
+            justify-content: space-between;
+            /* Distribute the space between photos evenly */
+            align-items: center;
+            /* Vertically center the photos */
+        }
+
+        .black-text {
+            color: black;
+        }
     </style>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<div class="search-box">
+    <form action="/search" method="GET">
+        <input type="text" name="query" placeholder="Search recipes...">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<div class="blue-bar">
+    <% categories.forEach(function(category) { %>
+    <a href="/category/<%= category.replace(/\s+/g,
+        '-').toLowerCase() %>"><%= category %></a>
+    <% }); %>
+</div>
 
-        <div class="search-box">
-            <form action="/search" method="GET">
-                <input type="text" name="query" placeholder="Search recipes...">
-                <button type="submit">Search</button>
-            </form>
+<video id="video-background" autoplay muted loop>
+    <source
+        src="/coverr-chef-preparing-a-dish-at-a-restaurant-6248-1080p.mp4"
+        type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+<div class="title-background">
+    <h1 class="title">The Donina Family Cookbook</h1>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="login-box">
+    <div class="photo-bar">
+        <img src="images/georgemary.jpg" alt="georgemary"
+             class="login-photo">
+        <img src="images/chuckrose.jpg" alt="chuckrose"
+             class="login-photo">
+        <img src="images/leemarge.jpg" alt="leemarge"
+             class="login-photo">
+        <% if (authenticated) { %>
+        <p><span style="color: black;">Welcome, <%=
+            firstName %> <%= lastName %>!</span> <a
+                href="/logout">Logout</a></p>
+
+        <!-- Wrap the "Add Recipe" and "My Recipes" buttons in a div -->
+    </div>
+    <% } else { %>
+    <!-- Wrap the login form in a <form> element -->
+    <form action="/login" method="POST"
+          class="login-form">
+        <div class="form-group">
+            <label for="email" style="color:
+                black;">Email:</label>
+            <input type="text" id="email"
+                   name="email" required>
         </div>
-        <div class="blue-bar">
-            <% categories.forEach(function(category) { %>
-                <a href="/category/<%= category.replace(/\s+/g,
-                    '-').toLowerCase() %>"><%= category %></a>
-                    <% }); %>
-                    </div>
+        <div class="form-group">
+            <label for="password" style="color:
+                black;">Password:</label>
+            <input type="password" id="password"
+                   name="password" required>
+        </div>
+        <button type="submit"
+                class="login-button">Login</button>
+    </form>
+    <p><span style="color: black;">Not
+            registered yet?</span> <a
+            href="/register">Register</a></p>
 
-                    <video id="video-background" autoplay muted loop>
-                        <source
-                            src="/coverr-chef-preparing-a-dish-at-a-restaurant-6248-1080p.mp4"
-                            type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
 
-                    <div class="title-background">
-                        <h1 class="title">The Donina Family Cookbook</h1>
-                    </div>
+    <% } %>
+    <img src="images/william.jpg"
+         alt="william" class="login-photo">
+    <img src="images/lucytony.jpg"
+         alt="lucytony" class="login-photo">
+    <img src="images/joe.jpg" alt="joe"
+         class="login-photo">
+</div>
+</div>
+
+<% if (authenticated) { %>
+<div class="action-button">
+    <a href="/addRecipe">Add a New Recipe</a>
+</div>
+<% if (showMyRecipesLink) { %>
+<div class="action-button">
+    <a href="/myRecipes">My Recipes</a>
+</div>
+<% } %>
+<% } %>
+
+<div class="categories-carousel-container">
+    <%
+        categories.forEach(function(category)
+        { %>
+    <% if
+        (categorizedRecipes[category]
+        &&
+        categorizedRecipes[category].length>
+        0) { %>
+    <div
+        class="carousel-container"
+        id="<%=
+        category.replace(/\s+/g,
+        '-').toLowerCase()
+        %>">
+        <a
+            class="category-button"
+            href="/category/<%=
+            category.replace(/\s+/g,
+            '-').toLowerCase()
+            %>">
+            <h2
+                class="category-heading"><%=
+                category
+                %></h2>
+        </a>
+        <div
+            class="carousel
+        <%=
+            category.replace(/\s+/g,
+            '-').toLowerCase()
+            %>">
+            <%
+                categorizedRecipes[category].forEach(function(recipe,
+                index)
+                { %>
+                <div
+                    class="carousel-item
+                <%=
+                    index
+                    ===
+                    0
+                    ?
+                    'active'
+                    :
+                    ''
+                    %>">
+                    <a
+                        href="/recipe/<%=
+                        recipe.id
+                        %>">
+                        <img
+                            src="<%=
+                            recipe.image_url
+                            ||
+                            '/images/default-photo.jpg'
+                            %>"
+                            alt="<%=
+                            recipe.title
+                            %>">
+                        <div
+                            class="recipe-title"><%=
+                                recipe.title
+                                %></div>
+                    </a>
                 </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div class="login-box">
-                    <div class="photo-bar">
-                        <img src="images/georgemary.jpg" alt="georgemary"
-                            class="login-photo">
-                        <img src="images/chuckrose.jpg" alt="chuckrose"
-                            class="login-photo">
-                        <img src="images/leemarge.jpg" alt="leemarge"
-                            class="login-photo">
-                        <% if (authenticated) { %>
-                            <p><span style="color: black;">Welcome, <%=
-                                        firstName %> <%= lastName %>!</span> <a
-                                            href="/logout">Logout</a></p>
+                <%
+                    });
+                    %>
+                </div>
+                <button
+                    class="carousel-button"
+                    onclick="scrollCarousel(this,
+                    '<%=
+                    category.replace(/\s+/g,
+                    '-').toLowerCase()
+                    %>',
+                    -1)">Previous</button>
+                <button
+                    class="carousel-button"
+                    onclick="scrollCarousel(this,
+                    '<%=
+                    category.replace(/\s+/g,
+                    '-').toLowerCase()
+                    %>',
+                    1)">Next</button>
+            </div>
+            <script>
+                function autoCycleRecipes(carouselId) {
+                    var carousel = document.querySelector(`#${carouselId} .carousel`);
+                    var items = carousel.querySelectorAll('.carousel-item');
 
-                                    <!-- Wrap the "Add Recipe" and "My Recipes" buttons in a div -->
-                                </div>
-                                <% } else { %>
-                                    <!-- Wrap the login form in a <form> element -->
-                                    <form action="/login" method="POST"
-                                        class="login-form">
-                                        <div class="form-group">
-                                            <label for="email" style="color:
-                                                black;">Email:</label>
-                                            <input type="text" id="email"
-                                                name="email" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="password" style="color:
-                                                black;">Password:</label>
-                                            <input type="password" id="password"
-                                                name="password" required>
-                                        </div>
-                                        <button type="submit"
-                                            class="login-button">Login</button>
-                                    </form>
-                                    <p><span style="color: black;">Not
-                                            registered yet?</span> <a
-                                            href="/register">Register</a></p>
+                    function nextSlide() {
+                        var activeIndex = -1;
 
-
-                                    <% } %>
-                                        <img src="images/william.jpg"
-                                            alt="william" class="login-photo">
-                                        <img src="images/lucytony.jpg"
-                                            alt="lucytony" class="login-photo">
-                                        <img src="images/joe.jpg" alt="joe"
-                                            class="login-photo">
-                                    </div>
-                                </div>
-
-
-
-
-                                <% if (authenticated) { %>
-                                    <div class="action-button">
-                                        <a href="/addRecipe">Add a New Recipe</a>
-                                    </div>
-                                    <% if (showMyRecipesLink) { %>
-                                        <div class="action-button">
-                                            <a href="/myRecipes">My Recipes</a>
-                                        </div>
-                                        <% } %>
-                                            <% } %>
-
-                                                <div
-                                                    class="categories-carousel-container">
-                                                    <%
-                                                        categories.forEach(function(category)
-                                                        { %>
-                                                        <% if
-                                                            (categorizedRecipes[category]
-                                                            &&
-                                                            categorizedRecipes[category].length>
-                                                            0) { %>
-                                                            <div
-                                                                class="carousel-container"
-                                                                id="<%=
-                                                                category.replace(/\s+/g,
-                                                                '-').toLowerCase()
-                                                                %>">
-                                                                <a
-                                                                    class="category-button"
-                                                                    href="/category/<%=
-                                                                    category.replace(/\s+/g,
-                                                                    '-').toLowerCase()
-                                                                    %>">
-                                                                    <h2
-                                                                        class="category-heading"><%=
-                                                                            category
-                                                                            %></h2>
-                                                                    </a>
-                                                                    <div
-                                                                        class="carousel
-                                                                    <%=
-                                                                        category.replace(/\s+/g,
-                                                                        '-').toLowerCase()
-                                                                        %>">
-                                                                        <%
-                                                                            categorizedRecipes[category].forEach(function(recipe,
-                                                                            index)
-                                                                            { %>
-                                                                            <div
-                                                                                class="carousel-item
-                                                                            <%=
-                                                                                index
-                                                                                ===
-                                                                                0
-                                                                                ?
-                                                                                'active'
-                                                                                :
-                                                                                ''
-                                                                                %>">
-                                                                                <a
-                                                                                    href="/recipe/<%=
-                                                                                    recipe.id
-                                                                                    %>">
-                                                                                    <img
-                                                                                        src="<%=
-                                                                                        recipe.image_url
-                                                                                        ||
-                                                                                        '/images/default-photo.jpg'
-                                                                                        %>"
-                                                                                    alt="<%=
-                                                                                        recipe.title
-                                                                                        %>">
-                                                                                        <div
-                                                                                            class="recipe-title"><%=
-                                                                                                recipe.title
-                                                                                                %></div>
-                                                                                        </a>
-                                                                                    </div>
-                                                                                    <%
-                                                                                        });
-                                                                                        %>
-                                                                                    </div>
-                                                                                    <button
-                                                                                        class="carousel-button"
-                                                                                        onclick="scrollCarousel(this,
-                                                                                        '<%=
-                                                                                        category.replace(/\s+/g,
-                                                                                        '-').toLowerCase()
-                                                                                        %>',
-                                                                                        -1)">Previous</button>
-                                                                                    <button
-                                                                                        class="carousel-button"
-                                                                                        onclick="scrollCarousel(this,
-                                                                                        '<%=
-                                                                                        category.replace(/\s+/g,
-                                                                                        '-').toLowerCase()
-                                                                                        %>',
-                                                                                        1)">Next</button>
-                                                                                </div>
-                                                                                <script>
-                    function autoCycleRecipes(carouselId) {
-                        var carousel = document.querySelector(`#${carouselId} .carousel`);
-                        var items = carousel.querySelectorAll('.carousel-item');
-
-                        function nextSlide() {
-                            var activeIndex = -1;
-
-                            items.forEach((item, index) => {
-                                if (item.classList.contains('active')) {
-                                    activeIndex = index;
-                                    item.classList.remove('active');
-                                }
-                            });
-
-                            var newIndex = activeIndex + 1;
-                            if (newIndex >= items.length) {
-                                newIndex = 0;
+                        items.forEach((item, index) => {
+                            if (item.classList.contains('active')) {
+                                activeIndex = index;
+                                item.classList.remove('active');
                             }
-                            items[newIndex].classList.add('active');
-                        }
+                        });
 
-                        setInterval(nextSlide, 5000); // Rotate every 5 seconds
+                        var newIndex = activeIndex + 1;
+                        if (newIndex >= items.length) {
+                            newIndex = 0;
+                        }
+                        items[newIndex].classList.add('active');
                     }
 
-                    autoCycleRecipes('<%= category.replace(/\s+/g, '-').toLowerCase() %>');
-                </script>
-                                                                                <%
-                                                                                    }
-                                                                                    else
-                                                                                    {
-                                                                                    %>
-                                                                                    <a
-                                                                                        class="category-button"
-                                                                                        href="/category/<%=
-                                                                                        category.replace(/\s+/g,
-                                                                                        '-').toLowerCase()
-                                                                                        %>">
-                                                                                        <h2
-                                                                                            class="category-heading"><%=
-                                                                                                category
-                                                                                                %></h2>
-                                                                                        </a>
-                                                                                        <p>No
-                                                                                            recipes
-                                                                                            available
-                                                                                            for
-                                                                                            this
-                                                                                            category.</p>
-                                                                                        <%
-                                                                                            }
-                                                                                            %>
-                                                                                            <%
-                                                                                                });
-                                                                                                %>
-                                                                                            </div>
-                                                                                            <script>
-        function scrollCarousel(button, carouselId, direction) {
-            var carousel = document.querySelector(`#${carouselId} .carousel`);
-            var items = carousel.querySelectorAll('.carousel-item');
-            var activeIndex = -1;
-
-            items.forEach((item, index) => {
-                if (item.classList.contains('active')) {
-                    activeIndex = index;
-                    item.classList.remove('active');
+                    setInterval(nextSlide, 5000); // Rotate every 5 seconds
                 }
-            });
 
-            if (activeIndex !== -1) {
-                var newIndex = activeIndex + direction;
-                if (newIndex < 0) {
-                    newIndex = items.length - 1;
-                } else if (newIndex >= items.length) {
-                    newIndex = 0;
+                autoCycleRecipes('<%= category.replace(/\s+/g, '-').toLowerCase() %>');
+            </script>
+            <%
                 }
-                items[newIndex].classList.add('active');
-            }
-        }
-    </script>
-                                                                                        </body>
-                                                                                    </html>
+                else
+                {
+                %>
+                <a
+                    class="category-button"
+                    href="/category/<%=
+                    category.replace(/\s+/g,
+                    '-').toLowerCase()
+                    %>">
+                    <h2
+                        class="category-heading"><%=
+                            category
+                            %></h2>
+                </a>
+                <p>No
+                    recipes
+                    available
+                    for
+                    this
+                    category.</p>
+                <%
+                    }
+                    %>
+                <%
+                    });
+                    %>
+            </div>
+            <script>
+                function scrollCarousel(button, carouselId, direction) {
+                    var carousel = document.querySelector(`#${carouselId} .carousel`);
+                    var items = carousel.querySelectorAll('.carousel-item');
+                    var activeIndex = -1;
+
+                    items.forEach((item, index) => {
+                        if (item.classList.contains('active')) {
+                            activeIndex = index;
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    if (activeIndex !== -1) {
+                        var newIndex = activeIndex + direction;
+                        if (newIndex < 0) {
+                            newIndex = items.length - 1;
+                        } else if (newIndex >= items.length) {
+                            newIndex = 0;
+                        }
+                        items[newIndex].classList.add('active');
+                    }
+                }
+            </script>
+</body>
+</html>
