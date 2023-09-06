@@ -195,14 +195,11 @@ p {
     z-index: 1000;
 }
 .title {
-    font-family: 'Pacifico', cursive; /* Add the font family property here */
+    font-family: 'Pacifico', cursive;
     font-size: 36px;
     color: #e17055;
-    margin: 0;
-    background-color: white;
-    padding: 10px;
     position: fixed;
-    top: 0;
+    top: 10px; /* Adjust the top position as needed */
     left: 0;
     width: 100%;
     z-index: 999;
