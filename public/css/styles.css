@@ -206,10 +206,10 @@ p {
 }
 @media (max-width: 768px) {
     .blue-bar {
-        padding: 5px 0;
+        padding: 3px 0;
     }
     .blue-bar a {
-        font-size: 10px;
+        font-size: 8px;
     }
 }
 @media (max-width: 768px) {
@@ -231,5 +231,11 @@ p {
     }
     .nav-button {
         margin: 5px 0;
+    }
+}
+@media (max-width: 768px) {
+    .title {
+        font-size: 24px; /* Reduce font size for smaller screens */
+        padding: 5px; /* Reduce padding for smaller screens */
     }
 }
