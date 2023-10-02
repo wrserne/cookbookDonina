@@ -1,204 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Family Cookbook</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Donina Family Cookbook</title>
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        .category-header-fixed {
-    font-family: 'Pacifico', cursive; /* Use the desired font */
-    font-size: 36px;
-    color: #e17055;
-    background-color: white;
-    padding: 10px;
-    position: fixed; /* Set the header to a fixed position */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 999;
-}
-        /* Center-align all text */
+        /* Body styles */
         body {
-            text-align: center;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: steelblue;
-        }
-        /* Video background */
-        #video-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        /* Page header */
-        h1 {
-            margin-top: 50px;
-            color: steelblue;
-            font-size: 36px;
-        }
-        /* Login bar */
-        .login-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: steelblue;
-            padding: 10px 0;
             text-align: center;
+            color: #fff;
+            background-color: #f5f5f5;
         }
-        /* Style adjustments for login bar links */
-        .login-bar a {
-            color: black;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        /* Additional styles for the user box */
-        .user-box {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            background-color: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        /* Add Recipe and My Recipes buttons */
-        .action-button {
-            display: block;
-            padding: 10px 20px;
-            background-color: steelblue;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-            margin: 10px;
-            text-decoration: none;
-        }
-        /* Categories carousel container */
-        .categories-carousel-container {
-            padding: 20px;
-        }
-        /* Category title */
-        h2 {
-            margin-top: 0;
-            font-size: 24px;
-            color: #007bff;
-            background-color: none;
-            padding: 10px;
-            border-radius: 5px 5px 0 0;
-        }
-        /* Carousel container */
-        .carousel-container {
-            position: relative;
+
+        /* Heading styles */
+        h1, h2 {
             margin-top: 20px;
         }
-        /* Carousel items */
-        .carousel-item {
-            display: none;
-            text-align: center;
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
-        .carousel-item.active {
-            display: block;
-        }
-        /* Recipe title */
-        .recipe-title {
-            margin-top: 10px;
-            font-size: 18px;
-        }
-        /* Carousel buttons */
-        .carousel-button {
-            background-color: steelblue;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            border-radius: 5px;
-        }
-        /* Fixed title styles */
-        .title {
-            font-family: 'Pacifico', cursive;
-            font-size: 36px;
-            color: #e17055;
-            background-color: white;
-            padding: 10px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-        }
-        .blue-bar {
-            background-color: steelblue;
-            padding: 10px 0;
-            display: flex;
-            justify-content: center;
-            position: fixed;
-            top: 74px;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-        }
-        .blue-bar a {
-            text-decoration: none;
-            color: white;
-            margin: 0 10px;
-        }
-        .category-button {
-            text-decoration: none;
-            color: steelblue;
-        }
-        .category-heading {
+
+        p {
             font-size: 18px;
             margin-bottom: 10px;
-            width: fit-content;
-            text-align: center;
-            background-color: steelblue;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            margin: 0 auto;
-            font-family: 'Roboto', sans-serif;
         }
+
         /* Add the carousel styles here */
         .carousel-container {
             max-width: 900px;
             margin: 20px auto;
             overflow: hidden;
         }
+
         .carousel {
             display: flex;
             transition: transform 0.5s;
             gap: 20px;
             justify-content: center;
             position: relative;
-            overflow-x: auto;
-            white-space: nowrap;
         }
+
         .carousel-item {
             flex: 0 0 250px;
-            height: auto;
+            height: 350px;
             text-align: center;
             background-color: #f9f9f9;
             border-radius: 8px;
             padding: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
-            width: 100%;
         }
+
         .carousel-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
             border-radius: 8px;
-            flex: 0 0 100%;
         }
+
         .recipe-title {
             position: absolute;
             top: 50%;
@@ -214,28 +79,103 @@
             width: 100%;
             pointer-events: none;
         }
+
         /* Set the video background to cover the entire viewport */
         #video-background {
-            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
         }
+
         /* Add the button styles */
         .carousel-button {
             margin-top: 10px;
             cursor: pointer;
         }
-        /* Category header styles */
-        .category-header {
-            font-family: 'Pacifico', cursive;
-            font-size: 36px;
-            color: #e17055;
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid #ccc;
+
+        /* Category heading styles */
+        .category-heading {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 10px;
+            width: fit-content;
+            text-align: center;
+            background-color: steelblue;
+            color: #007bff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 0 auto;
         }
-        /* Additional styles for the search box */
+
+        /* Additional styles for the blue bar navigation links */
+        .blue-bar {
+            background-color: #007bff;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 74px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+        }
+
+        .blue-bar a {
+            text-decoration: none;
+            color: white;
+            margin: 0 10px;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            /* Reduce font size for navigation links and buttons */
+            .blue-bar a {
+                font-size: 14px;
+            }
+
+            .category-button {
+                padding: 6px 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* Additional styles for the category buttons */
+        .category-button {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: steelblue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin: 5px;
+            text-decoration: none;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .category-button {
+                padding: 6px 15px;
+                font-size: 14px;
+            }
+        }
+
+        /* Add a background to the login message */
+        .login-message {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
         .search-box {
             position: fixed;
-            top: 10px;
+            top: 20px;
             right: 20px;
             background-color: white;
             border: 1px solid #ccc;
@@ -243,235 +183,88 @@
             padding: 5px 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            flex: 1;
-            padding: 10px;
         }
-        .search-box-container {
-            background-color: steelblue;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
+
+        .title {
+            font-family: 'Pacifico', cursive;
+            font-size: 36px;
+            color: #e17055;
+            margin: 0;
+            background-color: white;
+            padding: 10px;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 999;
         }
-        .recipes-by-titles {
-            flex: 1;
-            padding: 10px;
+
+        /* Additional styles specific to the home page can be added here */
+
+        /* Top bar with navigation links */
+        .top-bar {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background-color: steelblue;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            z-index: 100;
         }
-        .search-box input[type="text"] {
-            border: none;
-            padding: 5px;
-            width: 150px;
-        }
-        .search-box button {
-            color: #e17055;
-            background-color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
+
+        .top-bar a {
             text-decoration: none;
-        }
-        .login-box {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .login-form {
-            flex: 2;
-            text-align: center;
-            color: steelblue;
-        }
-        .form-group {
-            margin-bottom: 5px;
-        }
-        .login-button {
-            margin-top: 10px;
-        }
-        .login-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 10px;
-        }
-        .login-button {
-            margin-top: 10px;
-        }
-        .login-photo {
-            width: 150px;
-            height: auto;
-            border-radius: 8px;
+            color: white;
             margin: 0 10px;
         }
-        .photo-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .black-text {
-            color: black;
-        }
-        /* Reset body styles */
-        body {
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: steelblue;
-        }
+
+        /* Add your content-specific styles here */
+
     </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    <div class="title-background">
+        <a href="/"><h1 class="category-header title">The Donina Family Cookbook</h1></a>
+    </div>
+    <br>
+    <br>
     <div class="search-box">
         <form action="/search" method="GET">
             <input type="text" name="query" placeholder="Search recipes...">
             <button type="submit">Search</button>
         </form>
     </div>
-    <div class="blue-bar">
+    <!-- Top bar with navigation links -->
+    <div class="top-bar">
+        <br>
         <% categories.forEach(function(category) { %>
             <a href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>"><%= category %></a>
         <% }); %>
     </div>
-    <video id="video-background" autoplay muted loop>
-        <source src="/coverr-chef-preparing-a-dish-at-a-restaurant-6248-1080p.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="title-background">
-        <a href="/"><h1 class="category-header-fixed">The Donina Family Cookbook</h1></a>
-    </div>
     <br>
     <br>
     <br>
     <br>
     <br>
     <br>
-    <div class="login-box">
-        <div class="photo-bar">
-            <img src="images/georgemary.jpg" alt="georgemary" class="login-photo">
-            <img src="images/chuckrose.jpg" alt="chuckrose" class="login-photo">
-            <img src="images/leemarge.jpg" alt="leemarge" class="login-photo">
-            <% if (authenticated) { %>
-                <p><span style="color: black;">Welcome, <%= firstName %> <%= lastName %>!</span> <a href="/logout">Logout</a></p>
-            <% } else { %>
-                <form action="/login" method="POST" class="login-form">
-                    <div class="form-group">
-                        <label for="email" style="color: black;">Email:</label>
-                        <input type="text" id="email" name="email" required>
+    <!-- Add your content here, such as featured recipes or anything else you'd like to display on the home page -->
+    <!-- You can use EJS to dynamically generate content from your database -->
+    <!-- Example: Display featured recipes here -->
+    <div class="featured-recipes">
+        <% featuredRecipes.forEach(function(recipe) { %>
+            <div class="recipe-item">
+                <a href="/recipe/<%= recipe.id %>">
+                    <img class="recipe-image" src="<%= recipe.image_url || '/images/default-photo.jpg' %>" alt="<%= recipe.title %>">
+                    <div class="recipe-details">
+                        <h3 class="recipe-title"><%= recipe.title %></h3>
+                        <!-- Add other properties here as needed -->
                     </div>
-                    <div class="form-group">
-                        <label for="password" style="color: black;">Password:</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="login-button">Login</button>
-                </form>
-                <p><span style="color: black;">Not registered yet?</span> <a href="/register">Register</a></p>
-            <% } %>
-            <img src="images/william.jpg" alt="william" class="login-photo">
-            <img src="images/lucytony.jpg" alt="lucytony" class="login-photo">
-            <img src="images/joe.jpg" alt="joe" class="login-photo">
-        </div>
-    </div>
-    <% if (authenticated) { %>
-        <div class="action-button">
-            <a href="/addRecipe">Add a New Recipe</a>
-        </div>
-        <% if (showMyRecipesLink) { %>
-            <div class="action-button">
-                <a href="/myRecipes">My Recipes</a>
-            </div>
-        <% } %>
-    <% } %>
-    <div class="categories-carousel-container">
-        <% categories.forEach(function(category) { %>
-            <% if (categorizedRecipes[category] && categorizedRecipes[category].length > 0) { %>
-                <div class="carousel-container" id="<%= category.replace(/\s+/g, '-').toLowerCase() %>">
-                    <a class="category-button" href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>">
-                        <h2 class="category-heading"><%= category %></h2>
-                    </a>
-                    <div class="carousel <%= category.replace(/\s+/g, '-').toLowerCase() %>">
-                        <% categorizedRecipes[category].forEach(function(recipe, index) { %>
-                            <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                <a href="/recipe/<%= recipe.id %>">
-                                    <img src="<%= recipe.image_url || '/images/default-photo.jpg' %>" alt="<%= recipe.title %>">
-                                    <div class="recipe-title"><%= recipe.title %></div>
-                                </a>
-                            </div>
-                        <% }); %>
-                    </div>
-                    <button class="carousel-button" onclick="scrollCarousel(this, '<%= category.replace(/\s+/g, '-').toLowerCase() %>', -1)">Previous</button>
-                    <button class="carousel-button" onclick="scrollCarousel(this, '<%= category.replace(/\s+/g, '-').toLowerCase() %>', 1)">Next</button>
-                </div>
-                <script>
-                    function autoCycleRecipes(carouselId) {
-                        var carousel = document.querySelector(`#${carouselId} .carousel`);
-                        var items = carousel.querySelectorAll('.carousel-item');
-
-                        function nextSlide() {
-                            var activeIndex = -1;
-
-                            items.forEach((item, index) => {
-                                if (item.classList.contains('active')) {
-                                    activeIndex = index;
-                                    item.classList.remove('active');
-                                }
-                            });
-
-                            var newIndex = activeIndex + 1;
-                            if (newIndex >= items.length) {
-                                newIndex = 0;
-                            }
-                            items[newIndex].classList add('active');
-                        }
-
-                        setInterval(nextSlide, 5000);
-                    }
-
-                    autoCycleRecipes('<%= category.replace(/\s+/g, '-').toLowerCase() %>');
-                </script>
-            <% } else { %>
-                <a class="category-button" href="/category/<%= category.replace(/\s+/g, '-').toLowerCase() %>">
-                    <h2 class="category-heading"><%= category %></h2>
                 </a>
-                <p>No recipes available for this category.</p>
-            <% } %>
+            </div>
         <% }); %>
     </div>
-    <script>
-        function scrollCarousel(button, carouselId, direction) {
-            var carousel = document.querySelector(`#${carouselId} .carousel`);
-            var items = carousel.querySelectorAll('.carousel-item');
-            var activeIndex = -1;
-
-            items.forEach((item, index) => {
-                if (item.classList.contains('active')) {
-                    activeIndex = index;
-                    item.classList.remove('active');
-                }
-            });
-
-            if (activeIndex !== -1) {
-                var newIndex = activeIndex + direction;
-                if (newIndex < 0) {
-                    newIndex = items.length - 1;
-                } else if (newIndex >= items.length) {
-                    newIndex = 0;
-                }
-                items[newIndex].classList.add('active');
-            }
-        }
-    </script>
+    <!-- Other content or footer you might want to include -->
 </body>
 </html>
