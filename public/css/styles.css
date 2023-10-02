@@ -204,3 +204,32 @@ p {
     width: 100%;
     z-index: 999;
 }
+@media (max-width: 768px) {
+    .blue-bar {
+        padding: 5px 0;
+    }
+    .blue-bar a {
+        font-size: 14px;
+    }
+}
+@media (max-width: 768px) {
+    .recipe-box {
+        width: 90%;
+        margin: 0 auto;
+    }
+    .recipe-list {
+        display: block;
+    }
+    .recipe-item {
+        flex: 0 0 100%;
+        margin: 10px 0;
+    }
+}
+@media (max-width: 768px) {
+    .nav-buttons {
+        flex-direction: column;
+    }
+    .nav-button {
+        margin: 5px 0;
+    }
+}
