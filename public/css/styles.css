@@ -193,7 +193,7 @@ p {
 }
 .title {
     font-family: 'Pacifico', cursive; /* Use the desired font */
-    font-size: 36px;
+    font-size: 24px;
     color: #e17055;
     margin: 0;
     background-color: white;
@@ -206,10 +206,10 @@ p {
 }
 @media (max-width: 768px) {
     .blue-bar {
-        padding: 3px 0;
+        padding: 2px 0;
     }
     .blue-bar a {
-        font-size: 8px;
+        font-size: 7px;
     }
 }
 @media (max-width: 768px) {
