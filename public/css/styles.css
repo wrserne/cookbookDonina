@@ -4,9 +4,8 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
-    /* Center all text in the body */
-    color: #fff; /* Set default text color to white */
-    background-color: #f5f5f5; /* Set a background color for the body */
+    color: #fff;
+    background-color: #f5f5f5;
 }
 
 /* Heading styles */
@@ -25,34 +24,33 @@ p {
     margin-bottom: 10px;
 }
 
-/* Add the carousel styles here */
+/* Carousel styles */
 .carousel-container {
-    max-width: 900px; /* Adjust the maximum width to fit the carousel on the page */
-    margin: 20px auto; /* Adjust margin to center the carousel */
-    overflow: hidden; /* Hide the scroll bar */
+    max-width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
 }
 
 .carousel {
     display: flex;
     transition: transform 0.5s;
-    gap: 20px; /* Add a gap between carousel items for better spacing */
-    justify-content: center; /* Center the carousel items horizontally */
-    position: relative; /* Set the parent container to relative positioning */
+    gap: 20px;
+    justify-content: center;
+    position: relative;
 }
 
 .carousel-item {
-    flex: 0 0 250px; /* Set a fixed width for each carousel item */
-    height: 350px; /* Set a fixed height for each carousel item */
+    flex: 0 0 calc(33.33% - 20px);
+    height: 350px;
     text-align: center;
     background-color: #f9f9f9;
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Set the carousel items to relative positioning */
+    position: relative;
 }
 
 .carousel-item img {
-    /* Set the image size to cover the entire carousel item */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -61,8 +59,8 @@ p {
 
 .recipe-title {
     position: absolute;
-    top: 50%; /* Center the recipe titles vertically */
-    left: 50%; /* Center the recipe titles horizontally */
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     margin-top: 10px;
     font-size: 18px;
@@ -71,11 +69,11 @@ p {
     padding: 5px 10px;
     border-radius: 5px;
     color: #fff;
-    width: 100%; /* Set the title width to cover the entire carousel item */
-    pointer-events: none; /* Prevent the titles from blocking clicks */
+    width: 100%;
+    pointer-events: none;
 }
 
-/* Set the video background to cover the entire viewport */
+/* Video background */
 #video-background {
     position: fixed;
     top: 0;
@@ -86,7 +84,7 @@ p {
     object-fit: cover;
 }
 
-/* Add the button styles */
+/* Button styles */
 .carousel-button {
     margin-top: 10px;
     cursor: pointer;
@@ -97,16 +95,16 @@ p {
     font-size: 18px;
     font-weight: normal;
     margin-bottom: 10px;
-    width: fit-content; /* Set the width to fit the content */
-    text-align: center; /* Center the heading */
-    background-color: steelblue; /* Add a background color to the heading */
-    color: #007bff; /* Set the text color */
-    padding: 5px 10px; /* Add padding for better spacing */
+    width: fit-content;
+    text-align: center;
+    background-color: steelblue;
+    color: #007bff;
+    padding: 5px 10px;
     border-radius: 5px;
-    margin: 0 auto; /* Center the heading */
+    margin: 0 auto;
 }
 
-/* Additional styles for the blue bar navigation links */
+/* Blue bar navigation links */
 .blue-bar {
     background-color: #007bff;
     padding: 10px 0;
@@ -127,18 +125,14 @@ p {
 
 /* Media query for smaller screens */
 @media (max-width: 768px) {
-    /* Existing media query styles */
-    
     body {
-        font-size: 16px; /* Adjust the default font size */
+        font-size: 16px;
     }
 
-    /* Reduce font size for other elements as needed */
     h1, h2 {
         font-size: 20px;
     }
 
-    /* Reduce font size for navigation links and buttons */
     .blue-bar a {
         font-size: 14px;
     }
@@ -149,7 +143,7 @@ p {
     }
 }
 
-/* Additional styles for the category buttons */
+/* Category buttons */
 .category-button {
     display: inline-block;
     padding: 8px 20px;
@@ -163,23 +157,15 @@ p {
     text-decoration: none;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-    /* Existing media query styles */
-
-    .category-button {
-        padding: 6px 15px; /* Adjust padding for smaller screens */
-        font-size: 14px; /* Reduce font size for smaller screens */
-    }
-}
-
-/* Add a background to the login message */
+/* Login message background */
 .login-message {
     background-color: rgba(0, 0, 0, 0.2);
     padding: 10px;
     border-radius: 5px;
     margin: 10px;
 }
+
+/* Search box */
 .search-box {
     position: fixed;
     top: 20px;
@@ -191,8 +177,10 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
+
+/* Title styles */
 .title {
-    font-family: 'Pacifico', cursive; /* Use the desired font */
+    font-family: 'Pacifico', cursive;
     font-size: 24px;
     color: #e17055;
     margin: 0;
@@ -203,7 +191,17 @@ p {
     left: 0;
     width: 100%;
     z-index: 999;
+    text-align: center;
 }
+
+/* Additional media queries for smaller screens */
+@media (max-width: 480px) {
+    .title {
+        font-size: 20px;
+        padding: 5px;
+    }
+}
+
 @media (max-width: 768px) {
     .blue-bar {
         padding: 2px 0;
@@ -211,31 +209,26 @@ p {
     .blue-bar a {
         font-size: 7px;
     }
-}
-@media (max-width: 768px) {
+
     .recipe-box {
         width: 90%;
         margin: 0 auto;
     }
+
     .recipe-list {
         display: block;
     }
+
     .recipe-item {
         flex: 0 0 100%;
         margin: 10px 0;
     }
-}
-@media (max-width: 768px) {
+
     .nav-buttons {
         flex-direction: column;
     }
+
     .nav-button {
         margin: 5px 0;
-    }
-}
-@media (max-width: 768px) {
-    .title {
-        font-size: 24px; /* Reduce font size for smaller screens */
-        padding: 5px; /* Reduce padding for smaller screens */
     }
 }
